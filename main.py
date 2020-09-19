@@ -2,7 +2,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import requests
 import random
 import praw
-from wid import Ui_Form
+
 
 reddit = praw.Reddit(client_id="client_id",
                          client_secret="client_secret of bot",
@@ -78,7 +78,7 @@ class Ui_redditdw(object):
 
 
     def create_sub_list(self):
-
+        print(all_subs)
         limit_prep = self.lineEdit_2.text()
         reddit_name_prep = self.lineEdit.text()
         reddit_name = str(reddit_name_prep)
@@ -94,23 +94,28 @@ class Ui_redditdw(object):
         Ui_redditdw.meme(self)
 
     def meme(self):
+        print(all_subs)
         random_sub = random.choice(all_subs)
         img_url_scraped = random_sub.url
+        all_subs.remove(random_sub)
+
         Ui_redditdw.download(self, img_url_scraped)
 
     def download(self, img_url_scraped):
         try:
             name = random.randint(1, 10000)
             file_name = str(name)
-            output_path = "destination here" + file_name + ".png"
+            output_path = "J:\\reddit\img\\" + file_name + ".png"
             response = requests.get(img_url_scraped)
             file = open(output_path, "wb")
             file.write(response.content)
             file.close()
+
             print("saved image in", output_path)
             Ui_redditdw.meme(self)
         except:
             Ui_redditdw.meme(self)
+
 
 
 
