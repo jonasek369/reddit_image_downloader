@@ -78,7 +78,6 @@ class Ui_redditdw(object):
 
 
     def create_sub_list(self):
-        print(all_subs)
         limit_prep = self.lineEdit_2.text()
         reddit_name_prep = self.lineEdit.text()
         reddit_name = str(reddit_name_prep)
@@ -94,7 +93,6 @@ class Ui_redditdw(object):
         Ui_redditdw.meme(self)
 
     def meme(self):
-        print(all_subs)
         random_sub = random.choice(all_subs)
         img_url_scraped = random_sub.url
         all_subs.remove(random_sub)
