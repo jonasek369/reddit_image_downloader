@@ -6,3 +6,8 @@ you need to change the destination in the main.py in download funcion
 
 20/9/2020
 added naming of images to be 1-100 when you set 100 as you download first its 1 2nd its 2 etc.
+
+
+created -stable and -unstable
+-stable can download upto 500 images did not try more name images randomly
+-usntable can download about 50 without recursion added its not in the code you can add it if you want then 140
