@@ -113,7 +113,7 @@ class Ui_redditdw(object):
         try:
             name = random.randint(1, 10000)
             file_name = str(name)
-            output_path = "J:\\reddit\img\\" + file_name + ".png"
+            output_path = "your dir" + file_name + ".png"
             response = requests.get(img_url_scraped)
             file = open(output_path, "wb")
             file.write(response.content)
