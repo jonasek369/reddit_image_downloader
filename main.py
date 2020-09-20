@@ -93,24 +93,32 @@ class Ui_redditdw(object):
         Ui_redditdw.meme(self)
 
     def meme(self):
+        if all_subs == []:
+            print(f"downloaded {self.lineEdit_2.text()} images all done you can close the program now This program wont turn it self off you need to turn it off sleeping for 9000 secs")
+            time.sleep(9000)
         random_sub = random.choice(all_subs)
         img_url_scraped = random_sub.url
         all_subs.remove(random_sub)
 
-        Ui_redditdw.download(self, img_url_scraped)
+        Ui_redditdw.download(self, img_url_scraped, 0)
 
-    def download(self, img_url_scraped):
+    def download(self, img_url_scraped, enum):
         try:
-            name = random.randint(1, 10000)
-            file_name = str(name)
-            output_path = "J:\\reddit\img\\" + file_name + ".png"
-            response = requests.get(img_url_scraped)
-            file = open(output_path, "wb")
-            file.write(response.content)
-            file.close()
+            if enum in name_list:
+                Ui_redditdw.download(self, img_url_scraped, enum+1)
+            else:
+                name_list.append(enum)
 
-            print("saved image in", output_path)
-            Ui_redditdw.meme(self)
+
+                file_name = str(enum)
+                output_path = "J:\\reddit\img\\" + file_name + ".png"
+                response = requests.get(img_url_scraped)
+                file = open(output_path, "wb")
+                file.write(response.content)
+                file.close()
+
+                print("saved image in", output_path)
+                Ui_redditdw.meme(self)
         except:
             Ui_redditdw.meme(self)
 
